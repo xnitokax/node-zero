@@ -55,6 +55,16 @@
   .ls { display: grid; grid-template-columns: max-content 1fr; column-gap: 20px; margin: 8px 0 4px; }
   .ls .n { color: var(--accent); }
   .ls .ow { color: var(--warn); }
+  .ls { row-gap: 2px; }
+  /* タップ／クリックで入力欄にコマンドが入る */
+  .pick { cursor: pointer; border-radius: 3px; padding: 1px 5px; margin: -1px -5px; }
+  .pick:hover, .pick:active { background: var(--accent); color: var(--bg); }
+  .ow.pick:hover, .ow.pick:active { background: var(--warn); }
+  #run {
+    font: inherit; font-size: 14px; background: transparent; color: var(--accent); border: 1px solid var(--line);
+    border-radius: 4px; padding: 0 12px; cursor: pointer;
+  }
+  #run:hover { border-color: var(--accent); }
   .row { display: flex; gap: 8px; align-items: baseline; }
   #cmd {
     flex: 1; min-width: 0; font: inherit; background: transparent; color: var(--fg); border: none; outline: none; padding: 0;
@@ -118,7 +128,8 @@
     <div id="out"></div>
     <form class="row" id="form" autocomplete="off">
       <span class="ps" id="prompt"></span>
-      <input id="cmd" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="コマンド入力">
+      <input id="cmd" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" enterkeyhint="go" aria-label="コマンド入力">
+      <button id="run" type="submit" aria-label="実行">⏎</button>
     </form>
   </main>
 
@@ -247,7 +258,8 @@ function parseNode(html) {
   box.querySelectorAll("ul.links").forEach(ul => ul.remove());
   box.querySelectorAll("a[data-go]").forEach(a => {
     const span = document.createElement("span");
-    span.innerHTML = `<span class="tlink">${esc(a.textContent)}</span> <span class="tag">[${esc(linkName(a))}]</span>`;
+    const name = esc(linkName(a));
+    span.innerHTML = `<span class="tlink">${esc(a.textContent)}</span> <span class="tag pick" data-fill="ssh ${name}">[${name}]</span>`;
     a.replaceWith(span);
   });
   return { html: box.innerHTML, links };
@@ -256,9 +268,9 @@ function parseNode(html) {
 function printLinks() {
   if (!state.links.length) { print("接続先はありません。", "dim"); return; }
   const rows = state.links.map(l =>
-    `<span class="n${l.oneway ? " ow" : ""}">${esc(l.name)}</span><span${l.oneway ? ' class="ow"' : ""}>${esc(l.desc)}${l.oneway ? "　【一方通行】" : ""}</span>`
+    `<span class="n pick${l.oneway ? " ow" : ""}" data-fill="ssh ${esc(l.name)}">${esc(l.name)}</span><span${l.oneway ? ' class="ow"' : ""}>${esc(l.desc)}${l.oneway ? "　【一方通行】" : ""}</span>`
   ).join("");
-  print(`<div class="ls">${rows}</div><span class="dim">ssh &lt;名前&gt; で接続</span>`);
+  print(`<div class="ls">${rows}</div><span class="dim">ssh &lt;名前&gt; で接続（名前をタップでも入力できます）</span>`);
 }
 
 function enterNode(id, opt = {}) {
@@ -276,14 +288,21 @@ function enterNode(id, opt = {}) {
   if (node.trap) addTrace(node.trap);
 }
 
+// 画面をさかのぼった古い一覧は押せないようにする
+function disablePicks() {
+  out.querySelectorAll(".pick").forEach(el => el.classList.remove("pick"));
+}
+
 function showNode() {
+  disablePicks();
   const node = S.nodes[state.current];
   const { html, links } = parseNode(node.lock ? state.unlocked.get(state.current) : node.body);
   state.links = links;
   print(`<span class="dim">ssh://${esc(node.host)}</span>\n<b>${esc(node.title)}</b>`, "node-head");
   print(html, "node");
   if (node.ending) {
-    const rows = S.suspects.map(s => `<span class="n">${esc(s.id)}</span><span>${esc(s.name)}</span>`).join("");
+    const rows = S.suspects.map(s =>
+      `<span class="n pick" data-fill="${esc(S.finale.command)} ${esc(s.id)}">${esc(s.id)}</span><span>${esc(s.name)}</span>`).join("");
     print(`<div class="ls">${rows}</div>最後のコマンド：<span class="sys">${esc(S.finale.command)} &lt;名前&gt;</span>`, "warn");
   } else {
     printLinks();
@@ -429,7 +448,8 @@ const COMMANDS = {
     const link = state.links.find(l => l.name.toLowerCase() === arg.toLowerCase());
     if (!link) return print(`ssh: 接続先が見つかりません: ${esc(arg)}`, "alert");
     if (link.oneway) {
-      print("⚠ 一方通行です。この先は戻れません。", "warn");
+      disablePicks();
+      print(`⚠ 一方通行です。この先は戻れません。　<span class="n pick ow" data-fill="y">y 進む</span>　<span class="n pick" data-fill="n">n やめる</span>`, "warn");
       state.mode = { type: "confirm", id: link.go };
       setPrompt("続けますか？ [y/N]");
       return;
@@ -483,6 +503,7 @@ async function run(raw) {
     print(`<span class="ps">続けますか？ [y/N]</span> ${esc(raw)}`, "echo");
     if (/^y(es)?$/i.test(raw.trim())) return connect(mode.id, { oneway: true });
     print("中止しました。", "dim");
+    printLinks();
     return normalPrompt();
   }
 
@@ -536,8 +557,21 @@ cmd.addEventListener("keydown", e => {
   }
 });
 
-// どこをクリックしても入力欄へ（文字選択中は除く）
-$("term").addEventListener("click", () => { if (!getSelection().toString()) cmd.focus(); });
+// 名前をタップ → 入力欄にコマンドを入れる（実行は Enter か ⏎ ボタン）
+// それ以外の場所をクリック → 入力欄へ（文字選択中は除く）
+const finePointer = matchMedia("(pointer: fine)").matches;
+$("term").addEventListener("click", e => {
+  if (e.target.closest("#run")) return;
+  const pick = e.target.closest(".pick");
+  if (pick) {
+    if (state.busy || state.mode?.type === "password") return;
+    cmd.value = pick.dataset.fill;
+    // スマホではキーボードを出さない（⏎ ボタンで実行できる）
+    if (finePointer) cmd.focus(); else cmd.blur();
+    return;
+  }
+  if (!getSelection().toString()) cmd.focus();
+});
 
 // ---------------- 起動 ----------------
 function reset() {
