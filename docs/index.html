@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NODE//ZERO</title>
+<style>
+  :root {
+    --bg: #05090a; --panel: #0b1214; --line: #1c3a34;
+    --fg: #b8f5d8; --dim: #5d8f7c; --accent: #3dffa8; --alert: #ff4d6a; --warn: #ffc14d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font-family: "BIZ UDGothic", "Consolas", "MS Gothic", monospace;
+    font-size: 15px; line-height: 1.8;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; display: grid; grid-template-columns: 1fr 280px; gap: 16px; }
+  @media (max-width: 800px) { .wrap { grid-template-columns: 1fr; } }
+  header { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  header h1 { margin: 0; font-size: 18px; color: var(--accent); letter-spacing: .2em; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px; }
+  #addr { color: var(--dim); font-size: 13px; margin-bottom: 4px; word-break: break-all; }
+  #addr b { color: var(--accent); font-weight: normal; }
+  #title { margin: 0 0 12px; font-size: 20px; }
+  .sys { color: var(--accent); }
+  .alert { color: var(--alert); }
+  .meta { color: var(--dim); font-size: 13px; margin: 0; }
+  .doc { border-left: 2px solid var(--line); padding: 4px 12px; margin: 12px 0; }
+  .doc p { margin: 4px 0; }
+  .log { background: #000; border: 1px solid var(--line); padding: 10px; overflow-x: auto; font-size: 13px; }
+  ul.links { list-style: none; padding: 0; margin: 16px 0 0; }
+  ul.links li { margin: 6px 0; }
+  a[data-go] { color: var(--accent); cursor: pointer; text-decoration: none; border-bottom: 1px dashed var(--accent); }
+  a[data-go]:hover { background: var(--accent); color: var(--bg); }
+  a[data-go]::before { content: "» "; }
+  a[data-oneway] { color: var(--warn); border-color: var(--warn); }
+  a[data-oneway]:hover { background: var(--warn); }
+  button {
+    font: inherit; background: transparent; color: var(--accent); border: 1px solid var(--accent);
+    padding: 6px 14px; border-radius: 4px; cursor: pointer;
+  }
+  button:hover:not(:disabled) { background: var(--accent); color: var(--bg); }
+  button:disabled { opacity: .3; cursor: default; }
+  input { font: inherit; background: #000; color: var(--fg); border: 1px solid var(--line); padding: 6px 10px; border-radius: 4px; }
+  .nav { display: flex; gap: 8px; margin-top: 20px; }
+
+  /* トレースメーター */
+  .trace-label { display: flex; justify-content: space-between; font-size: 13px; }
+  .bar { height: 10px; background: #000; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; margin: 4px 0 16px; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .6s, background .6s; }
+  /* アクセスログ */
+  #log { list-style: none; padding: 0; margin: 0; font-size: 12px; max-height: 50vh; overflow-y: auto; }
+  #log li { color: var(--dim); border-bottom: 1px dotted var(--line); padding: 2px 0; }
+  #log li.bad { color: var(--alert); }
+  #log li.ow { color: var(--warn); }
+  h2 { font-size: 13px; color: var(--dim); margin: 0 0 6px; letter-spacing: .1em; }
+
+  /* 転移演出 */
+  #warp {
+    position: fixed; inset: 0; background: var(--bg); display: none; align-items: center; justify-content: center;
+    flex-direction: column; color: var(--accent); z-index: 10; font-size: 14px;
+  }
+  #warp.on { display: flex; }
+  #warp .scan { width: 260px; height: 2px; background: var(--line); margin-top: 12px; overflow: hidden; }
+  #warp .scan i { display: block; height: 100%; width: 40%; background: var(--accent); animation: scan .5s linear infinite; }
+  @keyframes scan { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+  .flash { animation: flash .5s 2; }
+  @keyframes flash { 50% { background: #3a0a12; } }
+  .choice { display: block; width: 100%; text-align: left; margin: 8px 0; }
+  .ending { white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 id="gameTitle">NODE//ZERO</h1>
+    <span id="clock" class="meta"></span>
+  </header>
+
+  <main class="panel" id="screen">
+    <div id="addr"></div>
+    <h2 id="title"></h2>
+    <div id="body"></div>
+    <div class="nav">
+      <button id="back">← 戻る</button>
+      <button id="restart">最初から</button>
+    </div>
+  </main>
+
+  <aside class="panel">
+    <div class="trace-label"><span>TRACE（逆探知）</span><span id="traceNum">0%</span></div>
+    <div class="bar"><i id="traceBar"></i></div>
+    <h2>ACCESS LOG</h2>
+    <ul id="log"></ul>
+  </aside>
+</div>
+
+<div id="warp"><div id="warpText">CONNECTING...</div><div class="scan"><i></i></div></div>
+
+<script src="nz-crypto.js"></script>
+<script src="scenario.data.js"></script>
+<script>
+// =========================================================
+//  エンジン（シナリオは src/scenario.js 側で編集 → tools/build.html でビルド）
+//  ?dev を付けて開くと、ビルドせずに src/scenario.js を直接読み込む
+// =========================================================
+(async () => {
+const $ = id => document.getElementById(id);
+let S, state;
+
+function loadScript(src) {
+  return new Promise((ok, ng) => {
+    const s = document.createElement("script");
+    s.src = src; s.onload = ok; s.onerror = () => ng(new Error(src + " を読み込めません"));
+    document.head.appendChild(s);
+  });
+}
+
+async function loadScenario() {
+  if (new URLSearchParams(location.search).has("dev")) {
+    await loadScript("../src/scenario.js");
+    return SCENARIO;
+  }
+  return JSON.parse(NZ.deobfuscate(window.SCENARIO_DATA));
+}
+
+// 鍵付きノードの本文：開発モードは平文比較、公開データは復号
+async function tryUnlock(node, input) {
+  if ("pass" in node.lock) return input === node.lock.pass ? node.body : null;
+  return NZ.unlock(node.lock, input);
+}
+
+function reset() {
+  state = { current: null, history: [], visited: new Set(), unlocked: new Map(), trace: 0, minutes: 0, over: false };
+  $("log").innerHTML = "";
+  updateTrace();
+  go(S.start, { instant: true });
+}
+
+function clockText() {
+  const t = 2 * 60 + 3 + state.minutes; // 深夜 02:03 から開始
+  return `${String(Math.floor(t / 60) % 24).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
+}
+
+function addLog(text, cls = "") {
+  const li = document.createElement("li");
+  li.textContent = `${clockText()}  ${text}`;
+  if (cls) li.className = cls;
+  $("log").prepend(li);
+}
+
+function updateTrace() {
+  const t = Math.min(100, state.trace);
+  $("traceNum").textContent = t + "%";
+  $("traceBar").style.width = t + "%";
+  $("traceBar").style.background = t >= 70 ? "var(--alert)" : t >= 40 ? "var(--warn)" : "var(--accent)";
+}
+
+function addTrace(n) {
+  state.trace += n;
+  updateTrace();
+  $("screen").classList.remove("flash"); void $("screen").offsetWidth; $("screen").classList.add("flash");
+  if (state.trace >= 100) { state.over = true; setTimeout(() => showEnding("traced"), 900); }
+}
+
+// 転移
+function go(id, opt = {}) {
+  const node = S.nodes[id];
+  if (!node || state.over) return;
+  const warp = () => {
+    if (state.current && !opt.isBack) state.history.push(state.current);
+    if (opt.oneway) state.history = [];
+    state.current = id;
+    state.minutes += 2 + Math.floor(Math.random() * 4);
+    if (opt.oneway) { addLog(`ONE-WAY → ${node.host}`, "ow"); state.visited.add(id); }
+    render();
+  };
+  if (opt.instant) return warp();
+  $("warpText").textContent = `CONNECTING → ${node.host}`;
+  $("warp").classList.add("on");
+  setTimeout(() => { $("warp").classList.remove("on"); warp(); }, 650);
+}
+
+function render() {
+  const id = state.current, node = S.nodes[id];
+  $("clock").textContent = `9/22 ${clockText()}`;
+  $("addr").innerHTML = `ssh://<b>${node.host}</b>`;
+  $("title").textContent = node.title;
+  $("back").disabled = state.history.length === 0 || !!node.ending;
+
+  // 鍵付きノード
+  if (node.lock && !state.unlocked.has(id)) {
+    $("body").innerHTML = `
+      <p class="sys">＞ 認証が必要です。</p>
+      <p>${node.lock.hint}</p>
+      <form id="lockForm"><input id="pw" autocomplete="off" placeholder="password"> <button>ENTER</button></form>
+      <p class="meta">※ 間違えるたびにトレースが上昇します</p>`;
+    $("pw").focus();
+    $("lockForm").onsubmit = async e => {
+      e.preventDefault();
+      const btn = e.target.querySelector("button");
+      btn.disabled = true;
+      const body = await tryUnlock(node, $("pw").value.trim());
+      btn.disabled = false;
+      if (body !== null) {
+        state.unlocked.set(id, body);
+        addLog(`AUTH OK  ${node.host}`);
+        render();
+      } else {
+        addLog(`AUTH FAIL  ${node.host}`, "bad");
+        addTrace(10);
+        $("pw").value = "";
+      }
+    };
+    return;
+  }
+
+  if (!state.visited.has(id) || node.trap) {
+    addLog(`→ ${node.host}`, node.trap ? "bad" : "");
+  }
+  state.visited.add(id);
+  $("body").innerHTML = node.lock ? state.unlocked.get(id) : node.body;
+  if (node.trap) addTrace(node.trap);
+  if (node.ending) renderReport();
+}
+
+function renderReport() {
+  const box = document.createElement("div");
+  S.suspects.forEach(s => {
+    const b = document.createElement("button");
+    b.className = "choice";
+    b.textContent = s.name;
+    b.onclick = () => showEnding(s.culprit ? (state.visited.has(S.evidenceNode) ? "true" : "noEvidence") : "wrong");
+    box.appendChild(b);
+  });
+  $("body").appendChild(box);
+}
+
+function showEnding(key) {
+  state.over = true;
+  $("addr").innerHTML = key === "traced" ? `<b class="alert">CONNECTION LOST</b>` : `ssh://<b>relay.anon-net</b>`;
+  $("title").textContent = "END";
+  $("body").innerHTML = `<p class="ending">${S.endings[key]}</p>`;
+  $("back").disabled = true;
+}
+
+// リンククリック = 転移
+document.addEventListener("click", e => {
+  const a = e.target.closest("a[data-go]");
+  if (!a) return;
+  e.preventDefault();
+  const oneway = a.hasAttribute("data-oneway");
+  if (oneway && !confirm("一方通行です。この先は戻れません。進みますか？")) return;
+  go(a.dataset.go, { oneway });
+});
+
+$("back").onclick = () => {
+  if (!state.history.length) return;
+  go(state.history.pop(), { isBack: true });
+};
+$("restart").onclick = reset;
+
+try {
+  S = await loadScenario();
+} catch (err) {
+  $("body").innerHTML = `<p class="alert">＞ シナリオを読み込めませんでした：${err.message}</p>`;
+  return;
+}
+$("gameTitle").textContent = S.title;
+document.title = S.title;
+reset();
+})();
+</script>
+</body>
+</html>

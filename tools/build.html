@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>NODE//ZERO build</title>
+<style>
+  body { background: #05090a; color: #b8f5d8; font-family: Consolas, "MS Gothic", monospace; padding: 24px; line-height: 1.7; }
+  button { font: inherit; background: transparent; color: #3dffa8; border: 1px solid #3dffa8; padding: 6px 16px; border-radius: 4px; cursor: pointer; }
+  button:hover { background: #3dffa8; color: #05090a; }
+  #out { white-space: pre-wrap; color: #5d8f7c; }
+  .ok { color: #3dffa8; } .ng { color: #ff4d6a; }
+</style>
+</head>
+<body>
+<h1>NODE//ZERO build</h1>
+<p>src/scenario.js → docs/scenario.data.js（鍵付きノードを暗号化・全体を難読化）</p>
+<p>※ tools/serve.ps1 で起動したサーバー経由で開いてください</p>
+<button id="build">ビルド</button>
+<div id="out"></div>
+
+<script src="../src/scenario.js"></script>
+<script src="../docs/nz-crypto.js"></script>
+<script>
+const out = document.getElementById("out");
+const log = (msg, cls = "") => { const d = document.createElement("div"); d.textContent = msg; d.className = cls; out.appendChild(d); };
+
+async function build() {
+  out.textContent = "";
+  const data = JSON.parse(JSON.stringify(SCENARIO));
+  for (const [id, node] of Object.entries(data.nodes)) {
+    if (!node.lock) continue;
+    const { pass, hint } = node.lock;
+    const box = await NZ.lock(node.body, pass);
+    // 復号テスト
+    if (await NZ.unlock(box, pass) !== node.body) throw new Error(`${id}: 復号テストに失敗`);
+    node.lock = { hint, ...box };
+    delete node.body;
+    log(`🔒 ${id}: 暗号化しました`);
+  }
+  // リンク切れチェック
+  for (const [id, node] of Object.entries(SCENARIO.nodes)) {
+    for (const m of node.body.matchAll(/data-go="([^"]+)"/g)) {
+      if (!SCENARIO.nodes[m[1]]) log(`⚠ ${id} → ${m[1]}: 転移先がありません`, "ng");
+    }
+  }
+  const js = `// 自動生成ファイル（tools/build.html）。直接編集しないでください。\nwindow.SCENARIO_DATA = "${NZ.obfuscate(JSON.stringify(data))}";\n`;
+  const res = await fetch("/__build", { method: "PUT", body: js });
+  if (!res.ok) throw new Error(`書き込み失敗 (${res.status})`);
+  log(`✔ docs/scenario.data.js を書き出しました（${js.length} 文字）`, "ok");
+}
+
+document.getElementById("build").onclick = () => build().catch(e => log("✖ " + e.message, "ng"));
+</script>
+</body>
+</html>
