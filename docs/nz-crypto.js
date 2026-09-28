@@ -1,19 +1,15 @@
 // =========================================================
-//  ネタバレ対策（ゲーム本体とビルドツールで共用）
-//    - 鍵付きノードの本文：パスワードから鍵を作って AES-GCM で暗号化
-//      → 正しいパスワードを入れない限り、データを見ても本文は読めない
-//    - シナリオ全体：XOR + Base64 で難読化
-//      → 開発者ツールでちらっと見ただけではネタバレしない程度（暗号ではない）
+//  鍵付きノードの暗号化（ゲーム本体とビルドツールで共用）
+//    パスワードから PBKDF2 で鍵を作り、本文を AES-GCM で暗号化する
+//    → 正しいパスワードを入れない限り、データを見ても本文は読めない
 // =========================================================
 const NZ = (() => {
   const enc = new TextEncoder();
   const dec = new TextDecoder();
-  const MASK = enc.encode("NODE//ZERO");
   const PBKDF2_ITERATIONS = 150000;
 
   const b64 = u8 => { let s = ""; u8.forEach(b => (s += String.fromCharCode(b))); return btoa(s); };
   const unb64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
-  const xor = u8 => u8.map((b, i) => b ^ MASK[i % MASK.length] ^ ((i * 7) & 255));
 
   async function deriveKey(pass, salt) {
     const base = await crypto.subtle.importKey("raw", enc.encode(pass), "PBKDF2", false, ["deriveKey"]);
@@ -23,9 +19,6 @@ const NZ = (() => {
   }
 
   return {
-    obfuscate: str => b64(xor(enc.encode(str))),
-    deobfuscate: str => dec.decode(xor(unb64(str))),
-
     async lock(text, pass) {
       const salt = crypto.getRandomValues(new Uint8Array(16));
       const iv = crypto.getRandomValues(new Uint8Array(12));

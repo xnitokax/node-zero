@@ -122,7 +122,8 @@ async function loadScenario() {
     await loadScript("../src/scenario.js");
     return SCENARIO;
   }
-  return JSON.parse(NZ.deobfuscate(window.SCENARIO_DATA));
+  if (!window.SCENARIO_DATA) throw new Error("scenario.data.js がありません（tools/build.html でビルドしてください）");
+  return window.SCENARIO_DATA;
 }
 
 // 鍵付きノードの本文：開発モードは平文比較、公開データは復号

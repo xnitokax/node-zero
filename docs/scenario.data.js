@@ -1,2 +1,82 @@
 // 自動生成ファイル（tools/build.html）。直接編集しないでください。
-window.SCENARIO_DATA = "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";
+window.SCENARIO_DATA = {
+  "title": "NODE//ZERO",
+  "start": "gateway",
+  "nodes": {
+    "gateway": {
+      "host": "relay.anon-net",
+      "title": "中継サーバー",
+      "body": "\n<p class=\"sys\">＞ 暗号化メッセージを1件受信しました。</p>\n<div class=\"doc\">\n<p>差出人：K.Kuga（妹）</p>\n<p>兄の久我 透（くが とおる）が、ネクサス社のサーバー室で死にました。<br>\n会社は「配線作業中の感電事故」と発表しています。</p>\n<p>でも兄は、死ぬ前の日に「明日、大事なデータを公開する」と言っていました。<br>\n事故じゃないと思うんです。お願いします、真実を調べてください。</p>\n</div>\n<p class=\"sys\">＞ ネクサス社ネットワークへの侵入口を確保済み。</p>\n<ul class=\"links\">\n  <li><a data-go=\"mail\">mail.nexus.local　── 社内メールサーバー</a></li>\n  <li><a data-go=\"portal\">portal.nexus.local　── 社内ポータル</a></li>\n</ul>"
+    },
+    "mail": {
+      "host": "mail.nexus.local/kuga",
+      "title": "久我 透 の受信箱",
+      "body": "\n<div class=\"doc\">\n<p class=\"meta\">From: 藤堂 誠（研究員）　9/20 18:02</p>\n<p>久我さん、例の耐久試験データ、明日の役員会で公開するんですよね？<br>\n正直、俺は反対です。でも久我さんがやらないなら、いずれ俺がやります。</p>\n</div>\n<div class=\"doc\">\n<p class=\"meta\">From: 真柴 恭一（副社長）　9/20 21:15</p>\n<p>あのデータの公開は許可しない。<br>\n新製品の発表まで一週間だ。君の判断ひとつで会社が終わる。今夜話そう。</p>\n</div>\n<div class=\"doc\">\n<p class=\"meta\">From: security-center@nexus-support.xyz　9/20 22:30</p>\n<p>【至急】あなたのアカウントに不正アクセスの疑いがあります。<br>\n今すぐ <a data-go=\"phish\">こちらからパスワードを再設定</a> してください。</p>\n</div>\n<ul class=\"links\">\n  <li><a data-go=\"cam\">cam.nexus.local　── 監視カメラサーバー（要認証）</a></li>\n  <li><a data-go=\"portal\">portal.nexus.local　── 社内ポータル</a></li>\n</ul>"
+    },
+    "phish": {
+      "host": "nexus-support.xyz",
+      "title": "!!! HONEYPOT !!!",
+      "trap": 35,
+      "body": "\n<p class=\"alert\">＞ 罠だ。これは侵入者を釣るための偽サイト。</p>\n<p class=\"alert\">＞ こちらの接続元が記録された。トレース上昇。</p>\n<ul class=\"links\">\n  <li><a data-go=\"mail\">急いで mail.nexus.local に戻る</a></li>\n</ul>"
+    },
+    "portal": {
+      "host": "portal.nexus.local",
+      "title": "社内ポータル",
+      "body": "\n<div class=\"doc\">\n<p class=\"meta\">お知らせ　9/20</p>\n<p>・システム管理部 江口さんのIDカードが紛失しました。見つけた方は総務部まで。<br>\n・研究部 藤堂さんは 9/19〜9/21 大阪出張です。</p>\n</div>\n<div class=\"doc\">\n<p class=\"meta\">社員紹介コーナー：システム管理部 江口 真奈美</p>\n<p>サーバーの面倒を見ています。家では愛猫の「むぎ」（2019年生まれ）に面倒を見られています。<br>\nパスワードは覚えやすいのが一番ですよね！</p>\n</div>\n<ul class=\"links\">\n  <li><a data-go=\"door\">door.nexus.local　── サーバー室 入退室ログ</a></li>\n  <li><a data-go=\"wallpaper\">free_wallpaper_4K.exe　── 【社員限定】無料壁紙</a></li>\n  <li><a data-go=\"mail\">mail.nexus.local　── 社内メールサーバー</a></li>\n</ul>"
+    },
+    "wallpaper": {
+      "host": "portal.nexus.local/dl",
+      "title": "!!! TRAP !!!",
+      "trap": 40,
+      "body": "\n<p class=\"alert\">＞ 実行ファイルは監視プログラムだった。</p>\n<p class=\"alert\">＞ セキュリティ部門に通知が飛んだ。トレース大幅上昇。</p>\n<ul class=\"links\">\n  <li><a data-go=\"portal\">portal.nexus.local に戻る</a></li>\n</ul>"
+    },
+    "door": {
+      "host": "door.nexus.local/log",
+      "title": "サーバー室 入退室ログ（9/20）",
+      "body": "\n<pre class=\"log\">\n22:58  IN   久我 透\n23:41  IN   江口 真奈美\n23:44  OUT  江口 真奈美\n23:50  ---  室内で異常電流を検知\n</pre>\n<p class=\"sys\">＞ 江口のカードが使われている……？</p>\n<ul class=\"links\">\n  <li><a data-go=\"cam\">cam.nexus.local　── 監視カメラサーバー（要認証）</a></li>\n  <li><a data-go=\"portal\">portal.nexus.local　── 社内ポータル</a></li>\n</ul>"
+    },
+    "cam": {
+      "host": "cam.nexus.local",
+      "title": "監視カメラサーバー",
+      "lock": {
+        "hint": "管理者アカウント：eguchi　パスワード：????????",
+        "salt": "EzW72n1IrkkFl3Gp1XbPPg==",
+        "iv": "ZB3zV2SL9M4ipV9o",
+        "ct": "mf5COZO7U8kqZxoYO0zZnDi98E4H6lGix2KnX2eSy1Jx2q31hgtpJRwQ7Ll6Tut6+p+CJGLs7yq/VjYN0ts5jItcckTRudGIQCWy923HwtnQmtJE7ZDlgvA4lmo6kPXew/WzSmdhusnDDLYxqsiKUKtYrPAyir2RY2EZ9vEodkRc0HCeFyz4xBMq8K6QoepTNfIvZ8nYG1AszFW5GD4vBpp6lqLo1+aq0A7mFKaf6N7r+TCwVEwRc8KJtL8U4eCjdHPBHZDdkISuuuRx+15YGSbqcOW9Bixaynv9ydAaM8VOGIOu3OHsM+PksF0y0ff8UhLZVHDmzz8UPPSuE/Ae68IFqfZbtySi+w1pHZ1FfOkhQqMb1LQqsDEGSD0wo2jgakAlfAyQknRiUTw/9Ba/DQZB1kmS9U5AHEULls70yLSk32K8kz51a5UggTBZi8XqjFrCjYKvdNL5vVatnLmANbIwR2r76alGESSUVvm3loAmUtp4hVtHyEFgFlofTsahFJjINhqkJTZArSDBYCl5g47RbSL+j1V+YvbbxGL81xwu3n+YXzNJH0oDCc/KF+DffSt7JT6qDbGa8kntV4Uv/KrCYoQyuLriLUyGZGvX3H/oyMbpdvwinh4cZUvdmHut9DG+8aTgH39geeK8kNfR5W362pbeU4oyNg6GlOCuC3+Xvzx8EYnb+lgX5Wj5j/rmA6vsBDNbpjGBz9WpVidBw53wGtMiNjblIVYRhzcQlCYVr3bijGWBOvpj3QqsDu4BPmwPNZW7KS1tjcAUi/7qhbM8PnROPUIND17JlGzPfA2EXwvx7QF5mwDECQddP2/HHUMBljpmrTwvwkdjjgJPkoPFjw3x/P1GBZLSir5zn9Tj1AowGJhwS+AjxS6fOsyDeNywBCDL0MeykyzZICE0jlhHV4GcO8XRox0rjUVrgSLYjVtCfPwhbXp8PKJNX9VHvnJfQAR2rGNC33XRdPh+XBCQTsHdqa6gQBYgZs4pEwTQnmqEvLf/zFeMpCnms9fi4RyN4hs="
+      }
+    },
+    "backup": {
+      "host": "backup.nexus.local/restore",
+      "title": "復元された映像 23:35-23:50",
+      "body": "\n<p class=\"alert\">＞ 侵入を検知されました。接続が切れる前に確認を。</p>\n<pre class=\"log\">\n23:40  サーバー室前に人物。顔は映っていない。\n       左手首に金色の腕時計。IDカードをかざしてドアを開ける。\n23:44  同じ人物が退室。手袋を外しながら歩き去る。\n</pre>\n<p class=\"sys\">＞ 江口のカードを使ったのは、江口本人とは限らない。<br>\n＞ 金色の腕時計……どこかで見覚えがある。役員会の集合写真では、副社長がいつも着けていた。</p>\n<ul class=\"links\">\n  <li><a data-go=\"report\">依頼人に報告する</a></li>\n</ul>"
+    },
+    "report": {
+      "host": "relay.anon-net",
+      "title": "報告",
+      "ending": true,
+      "body": "<p class=\"sys\">＞ 久我 透 を死に追いやったのは誰か。</p>"
+    }
+  },
+  "suspects": [
+    {
+      "name": "真柴 恭一（副社長）",
+      "culprit": true
+    },
+    {
+      "name": "藤堂 誠（研究員）"
+    },
+    {
+      "name": "江口 真奈美（システム管理者）"
+    },
+    {
+      "name": "本当に事故だった"
+    }
+  ],
+  "endings": {
+    "true": "真柴は江口の紛失したIDカードを拾い、それを使ってサーバー室に入った。\n久我に公開をやめるよう迫り、拒まれて配線に細工をした。\nそして翌深夜、自分の管理者権限で録画を消した。\n復元した映像を受け取った依頼人は、それを警察に届けた。\n── TRUE END",
+    "noEvidence": "真柴が怪しいことは分かった。だが決定的な証拠がない。\n副社長は「根拠のない中傷だ」と笑い飛ばし、事件は事故のまま処理された。\n── NORMAL END（証拠を見つけていない）",
+    "wrong": "あなたの報告をもとに、依頼人は告発に踏み切った。\nしかし、それは真実ではなかった。本当の犯人は今も会社にいる。\n── BAD END",
+    "traced": "接続が強制的に遮断された。\n逆探知により、あなたの居場所が特定された。\n── GAME OVER"
+  },
+  "evidenceNode": "backup"
+};

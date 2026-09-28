@@ -13,7 +13,7 @@
 </head>
 <body>
 <h1>NODE//ZERO build</h1>
-<p>src/scenario.js → docs/scenario.data.js（鍵付きノードを暗号化・全体を難読化）</p>
+<p>src/scenario.js → docs/scenario.data.js（鍵付きノードを暗号化）</p>
 <p>※ tools/serve.ps1 で起動したサーバー経由で開いてください</p>
 <button id="build">ビルド</button>
 <div id="out"></div>
@@ -43,7 +43,7 @@ async function build() {
       if (!SCENARIO.nodes[m[1]]) log(`⚠ ${id} → ${m[1]}: 転移先がありません`, "ng");
     }
   }
-  const js = `// 自動生成ファイル（tools/build.html）。直接編集しないでください。\nwindow.SCENARIO_DATA = "${NZ.obfuscate(JSON.stringify(data))}";\n`;
+  const js = `// 自動生成ファイル（tools/build.html）。直接編集しないでください。\nwindow.SCENARIO_DATA = ${JSON.stringify(data, null, 2)};\n`;
   const res = await fetch("/__build", { method: "PUT", body: js });
   if (!res.ok) throw new Error(`書き込み失敗 (${res.status})`);
   log(`✔ docs/scenario.data.js を書き出しました（${js.length} 文字）`, "ok");
