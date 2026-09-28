@@ -50,8 +50,12 @@ async function build() {
       names.add(name);
     });
   }
-  // 結末の条件チェック
+  // 最後のコマンドと結末の条件チェック
+  for (const ev of SCENARIO.finale.evidence) {
+    if (!SCENARIO.nodes[ev.node]) log(`⚠ finale.evidence「${ev.label}」: ノード ${ev.node} がありません`, "ng");
+  }
   for (const s of SCENARIO.suspects) {
+    if (!s.id || /\s/.test(s.id)) log(`⚠ 結末「${s.name}」: id（コマンドで打つ名前、空白なし）が必要です`, "ng");
     for (const e of s.endings) {
       for (const id of e.requires || []) {
         if (!SCENARIO.nodes[id]) log(`⚠ 結末「${s.name}」の条件 ${id}: ノードがありません`, "ng");

@@ -325,13 +325,29 @@ Received: from gw.nexus.local
       host: "relay.anon-net",
       title: "報告",
       ending: true,
-      body: `<p class="sys">＞ 久我 透を殺したのは誰か。</p>`,
+      body: `
+<p class="sys">＞ 久我 透を殺したのは誰か。</p>
+<p class="sys">＞ 犯人の名前を指定して、集めた証拠を依頼人に送りつけろ。チャンスは一度きりだ。</p>`,
     },
   },
 
-  // 報告画面の選択肢と結末（endings は上から順に判定）
+  // 最後のコマンド（報告画面で「command 名前」と打つとフィナーレ演出）
+  finale: {
+    command: "expose",
+    // 送信する証拠ファイル。node を訪れていれば OK、いなければ MISSING と表示される
+    evidence: [
+      { node: "lab",    label: "x7_durability_history.log" },
+      { node: "gate",   label: "gate_0920.log" },
+      { node: "vpn",    label: "auth_mashiba_admin.log" },
+      { node: "keihi",  label: "expense_t.todo.csv" },
+      { node: "backup", label: "cam_serverroom_2335-2350.mp4" },
+    ],
+  },
+
+  // 報告画面の選択肢と結末（id を最後のコマンドで指定。endings は上から順に判定）
   suspects: [
     {
+      id: "todo",
       name: "藤堂 誠（研究部）",
       endings: [
         { requires: ["backup", "vpn", "hr"],   text: TRUE_END + EPILOGUE + "\n\n── TRUE END ＋" },
@@ -346,6 +362,7 @@ Received: from gw.nexus.local
       ],
     },
     {
+      id: "mashiba",
       name: "真柴 恭一（副社長）",
       endings: [
         { text: `あなたは副社長を告発した。
@@ -358,6 +375,7 @@ Received: from gw.nexus.local
       ],
     },
     {
+      id: "eguchi",
       name: "江口 真奈美（システム管理部）",
       endings: [
         { text: `あなたは江口を告発した。カードの記録は、確かに彼女を指していた。
@@ -371,7 +389,8 @@ Received: from gw.nexus.local
       ],
     },
     {
-      name: "本当に事故だった",
+      id: "none",
+      name: "犯人はいない（本当に事故だった）",
       endings: [
         { text: `あなたは「事故だった」と報告した。
 

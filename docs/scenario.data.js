@@ -61,9 +61,9 @@ window.SCENARIO_DATA = {
       "title": "監視カメラサーバー",
       "lock": {
         "hint": "管理者アカウント：eguchi　パスワード：????????",
-        "salt": "6f/aQHM6+EPlk+x7glQQEg==",
-        "iv": "MwRYP5oQtuhxT36G",
-        "ct": "D/zU0EGWLp6swXI0wYUotTJtYfDTu5SICylx6ibKP/QPlyUMZpKU/0HoTsviV2RD9qS2Ito5T7bCMo1omyHWJEfOXF5mGq9+Bc528LEELRgCZ1XEU++ePdozuTx2oBdIRV5tdDN56UUMabdQr2/W8IIcvPpSo92zq1CqjELrONu9JbkswmYRMNYtHP9R/HIpSx3Uu9bJzzT0FeQE5NwQcqOFj9I39JIJvPlYHoG9X3xls/WClAwlM1eI5N2Klfa+MfEzpqOrHzd5c1Wvm7S9I5Pj0CrhOEocz6iijGASWj451HADy6HfJdDv91S0oOXdNtI2jm42t9rN8CYMyipwN/ScuF9WxVa5tkIzuJ8kVdaVbu1gnYDA4zjjYIMyGUs8NvIF4vCWY+xnR7c6covfmHxyjMAz6R38LepB1RJhJSO2LsEk41QG2r1UHfrfc4kqlSRl/N+5Pa+lcQdXPxDXa1X6Yn0cTJ1oE+ALzC6RxOCvlNx1KHE6mqIj8VV61HCngTBaTTYsxaA4MrutK7Abe+FJJziY64CR6ulDurgIoECaR42w0i6cvxl+oxTjfbkjhs2dSHjDrujes+2XM6h1eiV/cZfrr0se6a4Nds9sdGDPXxnZOfuby5uGinr4IE4eQn4jLGWT+5ywOaZMU6M+Y0qD6Xhma4RKMtopXkqssIcTrLrxCKhaOIxyY3h7kny4sGER6ECFiRJ15oZlklMNedBttfwQpreoBLkJeNpj/oUgCDDydejwQ7HO+NmhYZ/TdDnq4U0louNikpE76xcnPz8ZaTNkSbzvrr0TbSiZjKBqzvT8e3na9PK9b1DK0ZSeJaWWpTBv+PJTXT8diw9vgs9W2u56ssZLhqnLg2hYcGUFafRxObztfVttzEoLs0y9mklqVRi6PGLB3mw9wWL9wYd8KjW+cZv7JFdNUoMH5JtrB7xOPndALwW5MnKkPgqbh0eqa3tRIX4Dx64coH2Eqd0vLBF6rWQEc67WACCLzlVZXQXkodVHPqhbebHJhDzr1qiYUpR3s3IaYY/UvWQEtDC3ape/Sxcd6PlCj6bdPyd4LP2l3HeUO7a48+iuOqByFHDCr6wrAFAAM2JySopGTEluZ19KUY+xX5TS3kxucQiOYtC7LQl1rhKO6PgKLr9dYdOMVX9MgkdsUJsw4+xHZnoNvdPX8SpvetqIjEol5dsOEqNdRCvTmQcdoOW9l+wbdMW1WpQHcUrF0FhLgwQ6HE0wOJjNQ6uBeKAWHYS/56mKcuICc6aUVv8JpAMovh4xmKv9kwK6mAIgTqocrvyVlcB7TD3JSma5bpzxS06BJ70m8UoQ2fuDkpESRZ0B5w=="
+        "salt": "29MSUMnBkOeQGvyjVmChiA==",
+        "iv": "9ThYB/EDcXxEQduU",
+        "ct": "pqGoBsblxJbcPY4CHNdGmuYsmNiYzQu5IWe8D5LmJDLaT+azSQ8mPuNQT5NOq7BKMnBwJMP4Cxi3dPzaEBUkXqwe7zgMdqOs55aruGUiJfKZV9uKzmY0Yzc2xvDAAtrKxm9BGSj66ZJhbDPfRaoGZ0NJpRDMJTERLTXrZG5xjJkzayoa4FCKsVE9cAmbaPaUQgW0gkHZd+JP3CUZpdPaWB6HdqPAby12vZv//Joc6kYhdT+gtUQvRx/99OAQPwb64ZwWb70eJputN+i7L+OIohhtaWrfK9tYsNYAI03IEh2X/ifuOu9AusMUrPQjPoDH84T0He0B9OY/LKgF5XuqgW0SsBStIIONPa3O7AINL7V3cGH5l0NyXB5bNq0UiGVMayp513fFSoNiFr4Cnd/FhiSz0CFNLoT6sPgII7WUxwpfM8JbnD3C2aa72d46E+xZR4pIfAky0F8+KxcecrZSe9M0LyO0+qrkLnh+ha0xMwtTjl6LtK62LDygAVe/vAnWpinOVoc/kIFeHsjMPV6D8cUNuF4Z6W5z7RRqfPQKDbeQRq4U/Fu82LSYCogZlVts8ZtNSopDIDu0WTbcgJGhokx7+MIz7XJbr1MNhM4to8iItQNRbib3cCUcsFFpH+RscuZ0/y2oMtTnDOf7BJ9cUipouq6W3tE3Yk+Vyb8ITDU/430spFwBPfT3MDNCef+jRc97qtY/Df7pzG5gGJG0IhjVg2TKCHqH1NiA1kEVOA6K9CVlCPq2vwwZVn42V5Bo5WAaGNkN6kDYPOyKWLK9EfwkbgHvgFiHr/JQDU9dMJ0iNL7JsNqEXTkcCn/KdsKp2rNC4GoBlkV9Dnc8Bw3zYfk0X/MqR72e9UNsWsdUnpBo6OCQwIaQOzuAd3x5eHUkL0fAzTaUwglOv9qkW6xFE/gWLD81piyTdYhAGIMUNvURVcu1qYfplI4x5p6kLb2hVBdwRp4PmIvvSlnss0DiqsiUwGem8EQCR+lBf6VIhu0YudH5KWRILUN5OkhMYUMCH+RbC0DZf5wWtJ7ZfHRJD1tg+TAj5BMIMTwyhsPC+q9YDdvuDPshrX9E4jDIAGFSAkYFtwGhGkbziDaBGs964sHHeLddIKbogjqwW/Uzi5QySfK5w3ZDse6D/bQODLNIK++6uAJAoZomgfLcw10HzD1JojvzIaoICjPRetq+rGhmr1Ob2aSYffJCFOeruSiJSuRP8E4sSHZFNE2ru/ikf+6HDxBAofki01Z5Ba1UOUl19mhqyjoKm/xbs60+tY/4R9/vkpp2/8+D2Nt5W9vY5l4S7Ykh8ZRK+s+DCwlKGX5LFORHglx8DA1Cuulflg=="
       }
     },
     "vpn": {
@@ -71,9 +71,9 @@ window.SCENARIO_DATA = {
       "title": "認証ログサーバー",
       "lock": {
         "hint": "管理者アカウント：mashiba_admin　パスワード：????（数字4桁）",
-        "salt": "B/NAl9xJK7xrCUmwzO/i+Q==",
-        "iv": "lhaIYbwor1snl8Q7",
-        "ct": "RixqR2Oo+91DugLRC6ZTcwSMODluG14x9ZCGuyb3qyVhx1sZn3NZ5OjhZJAvIZofN1H5XaqMUaeqLHCftXhZEUB+9XZGIAGQWZRESJhovrS0Um73tE0GnQN2k0x86j15GqwgHGsUloI/izIv5ehszckSP9bOuaws+MPujvFDgx9g6+L8rIeHKHlWxKpTLgFuCG8BhAXXmlFAKfi1QZ/r6tMYgUXycN/wUV5F2YiEPZ5r9WOb4XCWQFQq1v8pGmJ/eYdOXfAi4jM8+E8n7i1A0tlL8dvrgWcR7hW7vJoNqwTAfgIjbEABDMHqkGagdGG+GoIhiDLrUMKnseLZYoxvZgS2mtlLH9R7SuFp5aAn7uYP3ujeIazmQxCKnVPrBU/n+O3BKSOt45pcnq35lIeCy8F4eQQh44n0cmjaybmUo59zil6dDJc+TJxBfU++cdjWV+1GhGS17GnGWJDp6Nd05zjQMUt+n+kt9A6JiMDbIs/ap+qn0I2+N3aimwGYShdZBPmdBqg5VQP/MIn2h7lgXqnN9PuSRQ4qn8B2TrE/OHcwjhaqvlyFye58ow0uYoQAVRr42Prg0BerX0tLabYn3rYYea6eUoWbaA9sRiuYz54+h0KZ1H8rRTU+ukDdD6d+usa/wr3t/dX+rSFzc8IM1V53yttCOiwLusaQjZb3EelESzCkWjr4haQXNcx46uNdclzRXhZNyOYTBRbqmKKiEmTJd+KzCQUyXEv4acEw2ANNF8+rCKHVu2BaEPBCv+o1U0NAhSfUbaBSkEYZ3KzFg0xr1UpwgsQRHsKBiUzvBshtTuT0ZmMLO1qsNPFg2LBELPauNwc5CcUoNOsUC6zVEPnakI+YbVd1ku1QSv1hhhnCmJUnR+Af9IA+TFGS6JLLhwj4LGL5JCqurMxiPAkV+zH82mtEdl1jl/awGn6gXj1bnO2nShz7dErUGRyjn/kU"
+        "salt": "ddLloF3japKvQQv+BmNGlg==",
+        "iv": "oebbticOij2+F2Z/",
+        "ct": "E3llf5+TktBCPIrHxa+ay78BWlRrpF4RMQB4sAnKrAwQZE85xBBN85TZvdCSuYYmBqkPE02/Qn1Yt080AudQzZloDMfdosjLeFrwrEBjiGQksEQuOImvqdmvK/JyQ6x4PB+1kCtxEtiqCo+glMoRekLYvHBPKOvwd9tVidXpcYem30gyXi4ujuVY6Wjl70dVHTSTveSH9emR5xnqmW82YFqF7oyEhKTHZUbCpxvxlR7XnMW22kCnnsDHkPftCVj4qgmKJUwBOEvHLxR7d4sOF2XC4P2UV9eMyaNxxoptA1edLaNHkC10OHQodUApHGUUskUm94LD+OPp4rk8CMpRguJ7sHSoS9EB75Ynw8k6iwtW3WFDVwgahJZvXDxsVKsJlcZ7NShjogxvLmLPYbgWtLgG5xjh24rvfIy3dM38i9tZfNnX25aGgLwItiI37KnVmHIR9GCTaUwl99dSeMJdL+DQFwuB10htT+sxK+geJ+xj574nBTHEgdmuNeZXaaNmiY32XBkS1cFrL1pcAdfqkV3Nixin1VZ/gdYgTB/Kk5RS3Ct9mSAg8kYl4JgikkvvXu8xZIjUUJFTW7HT2pY/sDv1xIuxzy5/gDz+E9TZN59Ddip1q8bj2CvLQXzmuPhNDvJzaHQgvcs/2R0EkbVg5Q7EA147rl2n/maIBslil1cFE8CZlNrrWMF0oIUQ9MfUMJS2d6WKpwcGBWEa/D05N3SQ2vb8GOUIF0pqYl4xXbCXkHrjKcCJS3u16Ej9rPqC0c5Tbo8tSQzknyL3gEMq2eAb78o8J9g5qg7zsplzoOV2W7lfSd4mws79JXq73XV6494wLeSenAqkfM0jYJY+LUyPRa1s2yCjHy5DjQOYzZF/Mjj/mxzIHWd6r8EEepeX4b6JfpzOMvRVp85TgzV/LO0MKq4CNvGY/WiMMSaSIcQhId2ZGQiMbg7zwJiFYz4E"
       }
     },
     "backup": {
@@ -85,11 +85,37 @@ window.SCENARIO_DATA = {
       "host": "relay.anon-net",
       "title": "報告",
       "ending": true,
-      "body": "<p class=\"sys\">＞ 久我 透を殺したのは誰か。</p>"
+      "body": "\n<p class=\"sys\">＞ 久我 透を殺したのは誰か。</p>\n<p class=\"sys\">＞ 犯人の名前を指定して、集めた証拠を依頼人に送りつけろ。チャンスは一度きりだ。</p>"
     }
+  },
+  "finale": {
+    "command": "expose",
+    "evidence": [
+      {
+        "node": "lab",
+        "label": "x7_durability_history.log"
+      },
+      {
+        "node": "gate",
+        "label": "gate_0920.log"
+      },
+      {
+        "node": "vpn",
+        "label": "auth_mashiba_admin.log"
+      },
+      {
+        "node": "keihi",
+        "label": "expense_t.todo.csv"
+      },
+      {
+        "node": "backup",
+        "label": "cam_serverroom_2335-2350.mp4"
+      }
+    ]
   },
   "suspects": [
     {
+      "id": "todo",
       "name": "藤堂 誠（研究部）",
       "endings": [
         {
@@ -128,6 +154,7 @@ window.SCENARIO_DATA = {
       ]
     },
     {
+      "id": "mashiba",
       "name": "真柴 恭一（副社長）",
       "endings": [
         {
@@ -136,6 +163,7 @@ window.SCENARIO_DATA = {
       ]
     },
     {
+      "id": "eguchi",
       "name": "江口 真奈美（システム管理部）",
       "endings": [
         {
@@ -144,7 +172,8 @@ window.SCENARIO_DATA = {
       ]
     },
     {
-      "name": "本当に事故だった",
+      "id": "none",
+      "name": "犯人はいない（本当に事故だった）",
       "endings": [
         {
           "text": "あなたは「事故だった」と報告した。\n\nX-7 は予定どおり発売された。\n三か月後、最初の発火事故のニュースが流れた。\n\n── BAD END"
