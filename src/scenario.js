@@ -7,6 +7,8 @@
 //      title: ノード名
 //      body:  本文（HTML）。<a data-go="ノードid">…</a> で転移リンクになる
 //             data-oneway を付けると一方通行（戻れなくなる）
+//             ターミナルでは「ssh 名前」で転移する。名前はリンク文字列の先頭語
+//             （mail.nexus.local → mail）。変えたいときは data-name="名前" を付ける
 //      lock:  { pass: "パスワード", hint: "入力画面に出すヒント" }  … 任意
 //             ※ ビルドすると本文がこのパスワードで暗号化され、pass は公開データから消えます
 //      trap:  数値 … 踏むとトレース（逆探知）がこの%上がる          … 任意
@@ -94,7 +96,7 @@ Received: from gw.nexus.local
 <div class="doc">
 <p class="meta">From: security-center@nexus-support.xyz　9/20 22:30</p>
 <p>【至急】あなたのアカウントに不正アクセスの疑いがあります。<br>
-今すぐ <a data-go="phish">こちらからパスワードを再設定</a> してください。</p>
+今すぐ <a data-go="phish" data-name="nexus-support.xyz">こちらからパスワードを再設定</a> してください。</p>
 </div>
 <div class="doc">
 <p class="meta">下書き（未送信）　9/20 22:47　宛先：（空欄）</p>
@@ -116,7 +118,7 @@ Received: from gw.nexus.local
 <p class="alert">＞ 罠だ。侵入者を釣るための偽サイトだった。</p>
 <p class="alert">＞ こちらの接続元が記録された。トレース上昇。</p>
 <ul class="links">
-  <li><a data-go="mail">急いで mail.nexus.local に戻る</a></li>
+  <li><a data-go="mail" data-name="mail">急いで mail.nexus.local に戻る</a></li>
 </ul>`,
     },
 
@@ -315,7 +317,7 @@ Received: from gw.nexus.local
 </pre>
 <p class="sys">＞ 研究部のラボコート。そして、引きずっている右足。</p>
 <ul class="links">
-  <li><a data-go="report">依頼人に報告する</a></li>
+  <li><a data-go="report" data-name="report">依頼人に報告する</a></li>
 </ul>`,
     },
 

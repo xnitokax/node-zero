@@ -38,10 +38,17 @@ async function build() {
     log(`🔒 ${id}: 暗号化しました`);
   }
   // リンク切れチェック
+  // （名前の決め方は docs/index.html の linkName と同じ）
   for (const [id, node] of Object.entries(SCENARIO.nodes)) {
-    for (const m of node.body.matchAll(/data-go="([^"]+)"/g)) {
-      if (!SCENARIO.nodes[m[1]]) log(`⚠ ${id} → ${m[1]}: 転移先がありません`, "ng");
-    }
+    const box = document.createElement("div");
+    box.innerHTML = node.body;
+    const names = new Set();
+    box.querySelectorAll("a[data-go]").forEach(a => {
+      if (!SCENARIO.nodes[a.dataset.go]) log(`⚠ ${id} → ${a.dataset.go}: 転移先がありません`, "ng");
+      const name = a.dataset.name || a.textContent.trim().split(/[\s　]/)[0].replace(/\.(nexus\.local|anon-net)\b.*$/, "");
+      if (names.has(name)) log(`⚠ ${id}: 接続先の名前「${name}」が重複しています（data-name で変えてください）`, "ng");
+      names.add(name);
+    });
   }
   // 結末の条件チェック
   for (const s of SCENARIO.suspects) {

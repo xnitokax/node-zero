@@ -11,13 +11,13 @@ window.SCENARIO_DATA = {
     "mail": {
       "host": "mail.nexus.local/kuga",
       "title": "久我 透 の受信箱",
-      "body": "\n<div class=\"doc\">\n<p class=\"meta\">From: 藤堂 誠（研究部）　9/20 18:02</p>\n<p>久我さん、明日の役員会の件。<br>\n公開する前に、一度だけ二人で話させてください。お願いします。</p>\n</div>\n<div class=\"doc\">\n<p class=\"meta\">From: 真柴 恭一（副社長）　9/20 21:15</p>\n<p>耐久試験の件、公開は許可しない。新製品の発表まであと一週間だ。<br>\n私は今夜シンガポールへ発つ。戻るまで何もするな。いいな。</p>\n</div>\n<div class=\"doc\">\n<p class=\"meta\">From: security-center@nexus-support.xyz　9/20 22:30</p>\n<p>【至急】あなたのアカウントに不正アクセスの疑いがあります。<br>\n今すぐ <a data-go=\"phish\">こちらからパスワードを再設定</a> してください。</p>\n</div>\n<div class=\"doc\">\n<p class=\"meta\">下書き（未送信）　9/20 22:47　宛先：（空欄）</p>\n<p>X-7 の耐久試験データは書き換えられていた。元の値は lab サーバーの履歴に残っている。<br>\n誰がやったのかも分かった。明日の役員会で、全部出す。<br>\n……あいつが、あんなことをするなんて。</p>\n</div>\n<ul class=\"links\">\n  <li><a data-go=\"lab\">lab.nexus.local　── 研究データサーバー</a></li>\n  <li><a data-go=\"portal\">portal.nexus.local　── 社内ポータル</a></li>\n</ul>"
+      "body": "\n<div class=\"doc\">\n<p class=\"meta\">From: 藤堂 誠（研究部）　9/20 18:02</p>\n<p>久我さん、明日の役員会の件。<br>\n公開する前に、一度だけ二人で話させてください。お願いします。</p>\n</div>\n<div class=\"doc\">\n<p class=\"meta\">From: 真柴 恭一（副社長）　9/20 21:15</p>\n<p>耐久試験の件、公開は許可しない。新製品の発表まであと一週間だ。<br>\n私は今夜シンガポールへ発つ。戻るまで何もするな。いいな。</p>\n</div>\n<div class=\"doc\">\n<p class=\"meta\">From: security-center@nexus-support.xyz　9/20 22:30</p>\n<p>【至急】あなたのアカウントに不正アクセスの疑いがあります。<br>\n今すぐ <a data-go=\"phish\" data-name=\"nexus-support.xyz\">こちらからパスワードを再設定</a> してください。</p>\n</div>\n<div class=\"doc\">\n<p class=\"meta\">下書き（未送信）　9/20 22:47　宛先：（空欄）</p>\n<p>X-7 の耐久試験データは書き換えられていた。元の値は lab サーバーの履歴に残っている。<br>\n誰がやったのかも分かった。明日の役員会で、全部出す。<br>\n……あいつが、あんなことをするなんて。</p>\n</div>\n<ul class=\"links\">\n  <li><a data-go=\"lab\">lab.nexus.local　── 研究データサーバー</a></li>\n  <li><a data-go=\"portal\">portal.nexus.local　── 社内ポータル</a></li>\n</ul>"
     },
     "phish": {
       "host": "nexus-support.xyz",
       "title": "!!! HONEYPOT !!!",
       "trap": 35,
-      "body": "\n<p class=\"alert\">＞ 罠だ。侵入者を釣るための偽サイトだった。</p>\n<p class=\"alert\">＞ こちらの接続元が記録された。トレース上昇。</p>\n<ul class=\"links\">\n  <li><a data-go=\"mail\">急いで mail.nexus.local に戻る</a></li>\n</ul>"
+      "body": "\n<p class=\"alert\">＞ 罠だ。侵入者を釣るための偽サイトだった。</p>\n<p class=\"alert\">＞ こちらの接続元が記録された。トレース上昇。</p>\n<ul class=\"links\">\n  <li><a data-go=\"mail\" data-name=\"mail\">急いで mail.nexus.local に戻る</a></li>\n</ul>"
     },
     "lab": {
       "host": "lab.nexus.local/x7/durability",
@@ -61,9 +61,9 @@ window.SCENARIO_DATA = {
       "title": "監視カメラサーバー",
       "lock": {
         "hint": "管理者アカウント：eguchi　パスワード：????????",
-        "salt": "ByZWN78fjPmn0W9gS0ucUA==",
-        "iv": "SX+G/t7TK2+VqBUK",
-        "ct": "I0SGWpb/56xzg8gzCm0Zr+xdVQURLtKjYTQjXTEHOQ55VvMatos2bfa5BTGx/uVSdw+H20oOih4uKJOFoJVYCyTx1V3xS+VILvV7AJ21e8s/soriL+jbW4PgRMTMEQbBSUk9/wx12pCUvZr8b6KHMO71SVyqK4wt2LvV8dSlPXUcKkrv+FstQUPSfxII80Q3tC6B8MZt49Dsi10TUWug8pjo0Kv90/YM+Ja0LCt5MlGLUsPLoBl7ytHpNKNMbh/WvtF6vksVyLuWfO4YAgTgW/HoL98TwVum6IKAxnd7HgV4rjmM1paZFigrlFOTmt2j9D2IZn4pgseuzhxjUx4DjTvyYQNJWrFxwnoNNZ51S7z0LuV1B642QbX0ZCeApFsBGDGoPEoGMGHzzBjxaeYhGyoL5iLCvFWYlFFmDE2f9RBsQKEQTcejIFS/F2vHubEkSvZWZg6hcnTd1cxfuLfUSDTdWc9QJuL2e5sY+u5hHZf2mw4CtdB4Jydqg8NBczEI1ryLRdnvVB34C/rXBjQm4TIv/kEiNpApucgJCY2WHTa757azADtwXxQfR677qWLRkL+OPyBR4YXAXB/abGK4MHtt6rgIMbkxkS5J4KAsFwyZ9BDpT2ypzFpCeVmryzigxuxSc/otjfVgPyz7LK133+HhRmN673I9dKzQdCbWJJGwFYDasxlT2ZQ8Apnm6Y1j8gybjFvrw82Vw3DJP2WxqflrndzmDc3rxa7w8GwxB2ODoAis50nqca6KPFZyfDfyftgDoG7WeMH5cCWi04SnOwhA403DstDQsiHqEmGJg0MpxFX2OKkV0/RRt31F6UjcSA7wIdNGZzuvP57IZIKdewmbevazrLkUkrw3pHqWcO5Bde/GDl9XMhyHOolSxbP17eIDfHz/dbnSF+kxb+woiDuZPPabmhTpQOq4QoEpbGuzuS/y9GgObi2tuDkAxSy3KfVaWKAiO3fo9rrwMa3kDaX5eqb426qBHKuRr1kHUG6ePtRP+SXiSqlmXAYpXYONVG9Wa28F7ooWmXXoywlgGRUvtLaYqzxu0kH3CkjjjQYbQd/MPe7wBFMb8LaHl8X+qyz3+SqjzwqUq0r6MbkePxxNHNojSj7xWKX0w4LaKa7mwTbD5You8s40lG7JxqeJvtQBuia1+8CDWnjvogg+H57VlurYgSgSVwVQOma5qM8QlkaPe+Jgd/VIG0mFtdlyr6ZPmsP+w0h2PVT5R2bLTy0gD8SvWOSe76b1OzPWvDe/jGTQls/5dEyRT4HAaRULdrP0WklSsSOmOrnLshL51ruSQo7qLCAXobT+idHlORqr5GGRbeHdQnEnCc5h3g=="
+        "salt": "6f/aQHM6+EPlk+x7glQQEg==",
+        "iv": "MwRYP5oQtuhxT36G",
+        "ct": "D/zU0EGWLp6swXI0wYUotTJtYfDTu5SICylx6ibKP/QPlyUMZpKU/0HoTsviV2RD9qS2Ito5T7bCMo1omyHWJEfOXF5mGq9+Bc528LEELRgCZ1XEU++ePdozuTx2oBdIRV5tdDN56UUMabdQr2/W8IIcvPpSo92zq1CqjELrONu9JbkswmYRMNYtHP9R/HIpSx3Uu9bJzzT0FeQE5NwQcqOFj9I39JIJvPlYHoG9X3xls/WClAwlM1eI5N2Klfa+MfEzpqOrHzd5c1Wvm7S9I5Pj0CrhOEocz6iijGASWj451HADy6HfJdDv91S0oOXdNtI2jm42t9rN8CYMyipwN/ScuF9WxVa5tkIzuJ8kVdaVbu1gnYDA4zjjYIMyGUs8NvIF4vCWY+xnR7c6covfmHxyjMAz6R38LepB1RJhJSO2LsEk41QG2r1UHfrfc4kqlSRl/N+5Pa+lcQdXPxDXa1X6Yn0cTJ1oE+ALzC6RxOCvlNx1KHE6mqIj8VV61HCngTBaTTYsxaA4MrutK7Abe+FJJziY64CR6ulDurgIoECaR42w0i6cvxl+oxTjfbkjhs2dSHjDrujes+2XM6h1eiV/cZfrr0se6a4Nds9sdGDPXxnZOfuby5uGinr4IE4eQn4jLGWT+5ywOaZMU6M+Y0qD6Xhma4RKMtopXkqssIcTrLrxCKhaOIxyY3h7kny4sGER6ECFiRJ15oZlklMNedBttfwQpreoBLkJeNpj/oUgCDDydejwQ7HO+NmhYZ/TdDnq4U0louNikpE76xcnPz8ZaTNkSbzvrr0TbSiZjKBqzvT8e3na9PK9b1DK0ZSeJaWWpTBv+PJTXT8diw9vgs9W2u56ssZLhqnLg2hYcGUFafRxObztfVttzEoLs0y9mklqVRi6PGLB3mw9wWL9wYd8KjW+cZv7JFdNUoMH5JtrB7xOPndALwW5MnKkPgqbh0eqa3tRIX4Dx64coH2Eqd0vLBF6rWQEc67WACCLzlVZXQXkodVHPqhbebHJhDzr1qiYUpR3s3IaYY/UvWQEtDC3ape/Sxcd6PlCj6bdPyd4LP2l3HeUO7a48+iuOqByFHDCr6wrAFAAM2JySopGTEluZ19KUY+xX5TS3kxucQiOYtC7LQl1rhKO6PgKLr9dYdOMVX9MgkdsUJsw4+xHZnoNvdPX8SpvetqIjEol5dsOEqNdRCvTmQcdoOW9l+wbdMW1WpQHcUrF0FhLgwQ6HE0wOJjNQ6uBeKAWHYS/56mKcuICc6aUVv8JpAMovh4xmKv9kwK6mAIgTqocrvyVlcB7TD3JSma5bpzxS06BJ70m8UoQ2fuDkpESRZ0B5w=="
       }
     },
     "vpn": {
@@ -71,15 +71,15 @@ window.SCENARIO_DATA = {
       "title": "認証ログサーバー",
       "lock": {
         "hint": "管理者アカウント：mashiba_admin　パスワード：????（数字4桁）",
-        "salt": "FCs12KbXq1/qGWLLoNN8dg==",
-        "iv": "VcSj5dMb8O2vU7yy",
-        "ct": "8eWeca0e6lSKhUwLp4I5WKs9M++ZUHuSDi7mzpxxz+WQINJR7cctQvDeFV5Kf5En4LlSdc7/Mkx94nF8hP9LZFw5zlyos68VIESXKP51N6ss8lsqS0/w1Hg7nqQwhCUtfY5NRPiC1iHBr1ytOPKD/8kYldOyQpkjqhHiArM4EHZFcwfYadIY37nSwo6o+lbHSRn06ci8IvSzu47CVbukpdUbp7t06fc7tSZlN+Z1Gc9yhrWPFozru+VfKsj16WQFobtCRLYCcID2j7UyyIJLyVolNWsWUucbURCe4uztZ8q4+lJ2BH8O3N6Z4NGxOqvJFA9p93ya1lbOSW5XuXneTOkOi1bqL5n3yd2h0tXOcUDmbD/yHNuA7gIgIP+uAWMhI8dczjcu82uKf+1mnnCEuqBcZEt+uZw4gPqo4IlnAw8TFOkWLbrdQbPgg8paplWWibcihDjtvGG7gv8mn9r2I0eUPUtPSlQiBtAbqrMEmQ7a8bbPHips0zhJZLIbtCDfr+zE3QlTLLfsLwHf1YUvQTvprgVNowAfV9Jhh5DBqVRw5GW9t+Y4iOVfbqHsnHbzflBZqJ36QJTNWR5fYjMJI1WdRIc17SAXD03RXCVI+m48Jg26iVxplz79+ZfSxrwubv4s0iwnDP9Wfi1rn6iEt9jPGub+vtAA+V16Db1ewufYPucPUBDw5zjccz/7h8UgsqvOqQiQqzV9BzdOxG4hsagx1Pyuyggia6zXjHJiCH0u3WirHVzcJx3nPNM9fHy6kbMDHH26vRgwacM2UbhP+u+vXP+EHflY37A2oYaVZC/hN0ofSyCm5tGNA45ZGzM2RHH95xj7iih5xppt2V12EteH0ym05R6xuYfnpXwQOmck3nJD0BNWL+lmD4a4eg4nBnffAuam7IILTWfmZZ9vyQLZ7sTU5MSjchrfEv1r7/cotsTky81eGVqwFRG7DJ8R"
+        "salt": "B/NAl9xJK7xrCUmwzO/i+Q==",
+        "iv": "lhaIYbwor1snl8Q7",
+        "ct": "RixqR2Oo+91DugLRC6ZTcwSMODluG14x9ZCGuyb3qyVhx1sZn3NZ5OjhZJAvIZofN1H5XaqMUaeqLHCftXhZEUB+9XZGIAGQWZRESJhovrS0Um73tE0GnQN2k0x86j15GqwgHGsUloI/izIv5ehszckSP9bOuaws+MPujvFDgx9g6+L8rIeHKHlWxKpTLgFuCG8BhAXXmlFAKfi1QZ/r6tMYgUXycN/wUV5F2YiEPZ5r9WOb4XCWQFQq1v8pGmJ/eYdOXfAi4jM8+E8n7i1A0tlL8dvrgWcR7hW7vJoNqwTAfgIjbEABDMHqkGagdGG+GoIhiDLrUMKnseLZYoxvZgS2mtlLH9R7SuFp5aAn7uYP3ujeIazmQxCKnVPrBU/n+O3BKSOt45pcnq35lIeCy8F4eQQh44n0cmjaybmUo59zil6dDJc+TJxBfU++cdjWV+1GhGS17GnGWJDp6Nd05zjQMUt+n+kt9A6JiMDbIs/ap+qn0I2+N3aimwGYShdZBPmdBqg5VQP/MIn2h7lgXqnN9PuSRQ4qn8B2TrE/OHcwjhaqvlyFye58ow0uYoQAVRr42Prg0BerX0tLabYn3rYYea6eUoWbaA9sRiuYz54+h0KZ1H8rRTU+ukDdD6d+usa/wr3t/dX+rSFzc8IM1V53yttCOiwLusaQjZb3EelESzCkWjr4haQXNcx46uNdclzRXhZNyOYTBRbqmKKiEmTJd+KzCQUyXEv4acEw2ANNF8+rCKHVu2BaEPBCv+o1U0NAhSfUbaBSkEYZ3KzFg0xr1UpwgsQRHsKBiUzvBshtTuT0ZmMLO1qsNPFg2LBELPauNwc5CcUoNOsUC6zVEPnakI+YbVd1ku1QSv1hhhnCmJUnR+Af9IA+TFGS6JLLhwj4LGL5JCqurMxiPAkV+zH82mtEdl1jl/awGn6gXj1bnO2nShz7dErUGRyjn/kU"
       }
     },
     "backup": {
       "host": "backup.nexus.local/restore",
       "title": "復元された映像 23:35-23:50",
-      "body": "\n<p class=\"alert\">＞ 侵入を検知された。遮断される前に確認しろ。</p>\n<pre class=\"log\">\n23:40  サーバー室前に人物。研究部だけに支給される青いラボコート。\n       フードで顔は見えない。IDカードをかざして入室。\n23:44  同じ人物が退室。右足を引きずりながら、足早に去っていく。\n</pre>\n<p class=\"sys\">＞ 研究部のラボコート。そして、引きずっている右足。</p>\n<ul class=\"links\">\n  <li><a data-go=\"report\">依頼人に報告する</a></li>\n</ul>"
+      "body": "\n<p class=\"alert\">＞ 侵入を検知された。遮断される前に確認しろ。</p>\n<pre class=\"log\">\n23:40  サーバー室前に人物。研究部だけに支給される青いラボコート。\n       フードで顔は見えない。IDカードをかざして入室。\n23:44  同じ人物が退室。右足を引きずりながら、足早に去っていく。\n</pre>\n<p class=\"sys\">＞ 研究部のラボコート。そして、引きずっている右足。</p>\n<ul class=\"links\">\n  <li><a data-go=\"report\" data-name=\"report\">依頼人に報告する</a></li>\n</ul>"
     },
     "report": {
       "host": "relay.anon-net",
