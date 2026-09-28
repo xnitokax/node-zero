@@ -20,14 +20,6 @@
     max-width: 1100px; height: 100%; margin: 0 auto; padding: 16px;
     display: grid; grid-template-columns: 1fr 260px; grid-template-rows: auto 1fr; gap: 16px;
   }
-  @media (max-width: 800px) {
-    .wrap { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; height: 100dvh; padding: 12px; gap: 10px; }
-    header { order: -2; }
-    aside { order: -1; padding: 10px 12px; }
-    .bar { margin-bottom: 6px; }
-    #log { max-height: 3.4em; }
-    #term { padding: 12px; }
-  }
   header { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
   header h1 { margin: 0; font-size: 18px; color: var(--accent); letter-spacing: .2em; }
   .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px; min-height: 0; }
@@ -115,6 +107,27 @@
   #overlay .endtag.bad { color: var(--alert); }
   #overlay .hint { margin-top: 48px; text-align: center; color: var(--dim); font-size: 13px; opacity: 0; transition: opacity 1s; }
   #overlay .hint.show { opacity: 1; }
+
+  /* スマホ：TRACE は1行、アクセスログは最新1件だけ（タップで開閉）
+     ※ 上の通常ルールを上書きするため、必ずスタイルの最後に置く */
+  @media (max-width: 800px) {
+    .wrap { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; height: 100dvh; padding: 12px; gap: 8px; }
+    header { order: -2; padding-bottom: 6px; }
+    #term { padding: 12px; }
+    aside {
+      order: -1; padding: 8px 12px; cursor: pointer;
+      display: grid; grid-template-columns: max-content 1fr max-content; column-gap: 10px; align-items: center;
+    }
+    aside::after { content: "▾"; color: var(--dim); font-size: 12px; grid-row: 1; grid-column: 3; }
+    aside.open::after { content: "▴"; }
+    .trace-label { gap: 8px; }
+    .bar { margin: 0; }
+    aside h2 { display: none; }
+    #log { grid-column: 1 / -1; max-height: 1.8em; overflow: hidden; margin-top: 4px; }
+    #log li { border-bottom: none; padding: 0; }
+    aside.open #log { max-height: 35vh; overflow-y: auto; }
+    aside.open #log li { border-bottom: 1px dotted var(--line); padding: 2px 0; }
+  }
 </style>
 </head>
 <body>
@@ -556,6 +569,9 @@ cmd.addEventListener("keydown", e => {
     cmd.value = hist[histPos] ?? "";
   }
 });
+
+// スマホ：TRACE 欄をタップでアクセスログを開閉
+document.querySelector("aside").addEventListener("click", e => e.currentTarget.classList.toggle("open"));
 
 // 名前をタップ → 入力欄にコマンドを入れる（実行は Enter か ⏎ ボタン）
 // それ以外の場所をクリック → 入力欄へ（文字選択中は除く）
