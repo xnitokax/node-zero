@@ -43,7 +43,16 @@ async function build() {
       if (!SCENARIO.nodes[m[1]]) log(`⚠ ${id} → ${m[1]}: 転移先がありません`, "ng");
     }
   }
-  const js = `// 自動生成ファイル（tools/build.html）。直接編集しないでください。\nwindow.SCENARIO_DATA = ${JSON.stringify(data, null, 2)};\n`;
+  // 結末の条件チェック
+  for (const s of SCENARIO.suspects) {
+    for (const e of s.endings) {
+      for (const id of e.requires || []) {
+        if (!SCENARIO.nodes[id]) log(`⚠ 結末「${s.name}」の条件 ${id}: ノードがありません`, "ng");
+      }
+    }
+    if ((s.endings.at(-1).requires || []).length) log(`⚠ 結末「${s.name}」: 最後の結末には requires を付けないでください（どれにも当てはまらない場合の受け皿）`, "ng");
+  }
+  const js =`// 自動生成ファイル（tools/build.html）。直接編集しないでください。\nwindow.SCENARIO_DATA = ${JSON.stringify(data, null, 2)};\n`;
   const res = await fetch("/__build", { method: "PUT", body: js });
   if (!res.ok) throw new Error(`書き込み失敗 (${res.status})`);
   log(`✔ docs/scenario.data.js を書き出しました（${js.length} 文字）`, "ok");

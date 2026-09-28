@@ -162,7 +162,7 @@ function addTrace(n) {
   state.trace += n;
   updateTrace();
   $("screen").classList.remove("flash"); void $("screen").offsetWidth; $("screen").classList.add("flash");
-  if (state.trace >= 100) { state.over = true; setTimeout(() => showEnding("traced"), 900); }
+  if (state.trace >= 100) { state.over = true; setTimeout(() => showEnding(S.gameOver, true), 900); }
 }
 
 // 転移
@@ -232,17 +232,26 @@ function renderReport() {
     const b = document.createElement("button");
     b.className = "choice";
     b.textContent = s.name;
-    b.onclick = () => showEnding(s.culprit ? (state.visited.has(S.evidenceNode) ? "true" : "noEvidence") : "wrong");
+    b.onclick = () => showEnding(pickEnding(s));
     box.appendChild(b);
   });
   $("body").appendChild(box);
 }
 
-function showEnding(key) {
+// requires のノードをすべて訪れている最初の結末
+function pickEnding(suspect) {
+  return suspect.endings.find(e => (e.requires || []).every(id => state.visited.has(id))).text;
+}
+
+function showEnding(text, traced = false) {
   state.over = true;
-  $("addr").innerHTML = key === "traced" ? `<b class="alert">CONNECTION LOST</b>` : `ssh://<b>relay.anon-net</b>`;
+  $("addr").innerHTML = traced ? `<b class="alert">CONNECTION LOST</b>` : `ssh://<b>relay.anon-net</b>`;
   $("title").textContent = "END";
-  $("body").innerHTML = `<p class="ending">${S.endings[key]}</p>`;
+  $("body").innerHTML = "";
+  const p = document.createElement("p");
+  p.className = "ending";
+  p.textContent = text.trim();
+  $("body").appendChild(p);
   $("back").disabled = true;
 }
 
